@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMatch - Your Personal Movie Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="theme-toggle">
+        <button id="theme-btn"><i class="fas fa-moon"></i></button>
+    </div>
+    
+    <header class="animate__animated animate__fadeIn">
+        <div class="container">
+            <h1><i class="fas fa-film"></i> CineMatch</h1>
+            <p>Find movies that match your vibe</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Featured Movie Section -->
+        <section class="featured-movie animate__animated animate__fadeIn animate__delay-1s">
+            <div class="featured-content">
+                <h2>Today's Special Pick</h2>
+                <div id="featured-movie-card" class="featured-card">
+                    <div class="featured-info">
+                        <h3 id="featured-title">Loading today's featured movie...</h3>
+                        <p id="featured-overview"></p>
+                        <div class="featured-meta">
+                            <span id="featured-year"></span>
+                            <span id="featured-rating"></span>
+                            <span id="featured-runtime"></span>
+                        </div>
+                        <button id="watch-trailer" class="trailer-btn">
+                            <i class="fab fa-youtube"></i> Watch Trailer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mood Picker Section -->
+        <section class="mood-picker animate__animated animate__fadeIn animate__delay-2s">
+            <h2>How are you feeling today?</h2>
+            <div class="mood-options">
+                <div class="mood-option" data-mood="happy">
+                    <i class="fas fa-laugh-beam"></i>
+                    <span>Happy</span>
+                </div>
+                <div class="mood-option" data-mood="adventurous">
+                    <i class="fas fa-mountain"></i>
+                    <span>Adventurous</span>
+                </div>
+                <div class="mood-option" data-mood="romantic">
+                    <i class="fas fa-heart"></i>
+                    <span>Romantic</span>
+                </div>
+                <div class="mood-option" data-mood="thoughtful">
+                    <i class="fas fa-brain"></i>
+                    <span>Thoughtful</span>
+                </div>
+                <div class="mood-option" data-mood="nostalgic">
+                    <i class="fas fa-history"></i>
+                    <span>Nostalgic</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Controls -->
+        <section class="controls animate__animated animate__fadeIn animate__delay-3s">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search for movies...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="genre-buttons">
+                <h3>Browse Genres:</h3>
+                <div class="buttons">
+                    <button data-genre="28"><i class="fas fa-explosion"></i> Action</button>
+                    <button data-genre="35"><i class="fas fa-laugh-squint"></i> Comedy</button>
+                    <button data-genre="18"><i class="fas fa-theater-masks"></i> Drama</button>
+                    <button data-genre="878"><i class="fas fa-rocket"></i> Sci-Fi</button>
+                    <button data-genre="53"><i class="fas fa-question"></i> Thriller</button>
+                    <button data-genre="14"><i class="fas fa-dragon"></i> Fantasy</button>
+                </div>
+            </div>
+            
+            <button id="random-btn" class="random-btn">
+                <i class="fas fa-random"></i> Surprise Me!
+            </button>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results">
+            <div class="results-header">
+                <h2 id="results-title">Recommended For You</h2>
+                <div class="sort-options">
+                    <span>Sort by:</span>
+                    <select id="sort-by">
+                        <option value="popularity">Popularity</option>
+                        <option value="rating">Rating</option>
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="movie-grid" class="movie-grid"></div>
+            
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Finding your perfect matches...</p>
+            </div>
+            
+            <button id="load-more" class="load-more-btn">Show More Movies</button>
+        </section>
+    </main>
+
+    <!-- Watchlist Modal -->
+    <div id="watchlist-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2><i class="fas fa-bookmark"></i> Your Watchlist</h2>
+            <div id="watchlist-items" class="watchlist-items"></div>
+        </div>
+    </div>
+
+    <!-- Movie Details Modal -->
+    <div id="movie-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="movie-details" class="movie-details"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="social-share">
+                <span>Share CineMatch:</span>
+                <a href="#" class="social-icon" id="share-twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon" id="share-facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon" id="share-whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>Powered by TMDB API</p>
+            <p>&copy; 2025 CineMatch. Made with <i class="fas fa-heart"></i> for movie lovers.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
