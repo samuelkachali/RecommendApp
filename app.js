@@ -3,6 +3,10 @@ const API_KEY = 'fe038d7c82f30a8705d3933bf78e2181'; // Replace with your actual 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
+// Theme Configuration
+const themeBtn = document.getElementById('theme-btn');
+const body = document.body;
+
 // DOM Elements
 const movieGrid = document.getElementById('movie-grid');
 const searchInput = document.getElementById('search-input');
@@ -18,6 +22,7 @@ const featuredYear = document.getElementById('featured-year');
 const featuredRating = document.getElementById('featured-rating');
 const featuredRuntime = document.getElementById('featured-runtime');
 const watchTrailerBtn = document.getElementById('watch-trailer');
+const linkedinLink = document.querySelector('.social-link.linkedin'); // Add this line
 
 // App State
 let currentPage = 1;
@@ -27,11 +32,40 @@ let currentQuery = '';
 let currentGenre = '';
 let featuredMovie = null;
 
+// Theme Toggle Functionality
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+}
+
+function updateThemeIcon(theme) {
+    themeBtn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+}
+
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
     fetchFeaturedMovie();
     fetchPopularMovies();
     setupEventListeners();
+    initTheme(); // Initialize theme on load
+    
+    // Set up LinkedIn link properly
+    if (linkedinLink) {
+        linkedinLink.href = 'https://www.linkedin.com/in/samuel-kachali-b37926254';
+        linkedinLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open(linkedinLink.href, '_blank');
+        });
+    }
 });
 
 function setupEventListeners() {
@@ -43,6 +77,9 @@ function setupEventListeners() {
 
     // Random movies
     randomBtn.addEventListener('click', fetchRandomMovies);
+    
+    // Theme toggle
+    themeBtn.addEventListener('click', toggleTheme);
 
     // Genre buttons
     document.querySelectorAll('.genre-buttons button').forEach(button => {
