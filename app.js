@@ -99,6 +99,70 @@ function setupEventListeners() {
             openTrailer(featuredMovie.id);
         }
     });
+
+    // Mood selection
+    document.querySelectorAll('.mood-option').forEach(option => {
+        option.addEventListener('click', () => {
+            // Remove selected class from all options
+            document.querySelectorAll('.mood-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            option.classList.add('selected');
+            
+            // Get the genre from data attribute
+            const genreId = option.dataset.genre;
+            const genreName = option.querySelector('span').textContent;
+            
+            // Fetch movies by genre
+            currentGenre = genreId;
+            currentPage = 1;
+            fetchMoviesByGenre(genreId, genreName);
+            
+            // Highlight corresponding genre button if exists
+            highlightGenreButton(genreId);
+        });
+    });
+
+    // Sort functionality
+document.getElementById('sort-by').addEventListener('change', (e) => {
+    sortMovies(e.target.value);
+});
+}
+
+// Sorting function
+function sortMovies(sortCriteria) {
+    if (currentMovies.length === 0) return;
+    
+    let sortedMovies = [...currentMovies];
+    
+    const [sortBy, sortOrder] = sortCriteria.split('.');
+    
+    sortedMovies.sort((a, b) => {
+        let valueA = a[sortBy];
+        let valueB = b[sortBy];
+        
+        // Handle dates
+        if (sortBy === 'release_date') {
+            valueA = new Date(valueA || '1970-01-01').getTime();
+            valueB = new Date(valueB || '1970-01-01').getTime();
+        }
+        
+        // Handle null/undefined values
+        if (valueA == null) return sortOrder === 'asc' ? -1 : 1;
+        if (valueB == null) return sortOrder === 'asc' ? 1 : -1;
+        
+        // Numeric comparison
+        if (sortOrder === 'asc') {
+            return valueA - valueB;
+        } else {
+            return valueB - valueA;
+        }
+    });
+    
+    currentMovies = sortedMovies;
+    displayMovies(currentMovies);
 }
 
 // Fetch and display today's featured movie

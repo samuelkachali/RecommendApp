@@ -42,32 +42,37 @@
             </div>
         </section>
 
-        <!-- Mood Picker Section -->
-        <section class="mood-picker animate__animated animate__fadeIn animate__delay-2s">
-            <h2>How are you feeling today?</h2>
-            <div class="mood-options">
-                <div class="mood-option" data-mood="happy">
-                    <i class="fas fa-laugh-beam"></i>
-                    <span>Happy</span>
-                </div>
-                <div class="mood-option" data-mood="adventurous">
-                    <i class="fas fa-mountain"></i>
-                    <span>Adventurous</span>
-                </div>
-                <div class="mood-option" data-mood="romantic">
-                    <i class="fas fa-heart"></i>
-                    <span>Romantic</span>
-                </div>
-                <div class="mood-option" data-mood="thoughtful">
-                    <i class="fas fa-brain"></i>
-                    <span>Thoughtful</span>
-                </div>
-                <div class="mood-option" data-mood="nostalgic">
-                    <i class="fas fa-history"></i>
-                    <span>Nostalgic</span>
-                </div>
-            </div>
-        </section>
+      <!-- Mood Picker Section -->
+<section class="mood-picker animate__animated animate__fadeIn animate__delay-2s">
+    <h2>How are you feeling today?</h2>
+    <div class="mood-options">
+        <div class="mood-option" data-mood="happy" data-genre="35"> <!-- Comedy -->
+            <i class="fas fa-laugh-beam"></i>
+            <span>Happy</span>
+            <div class="checkmark"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="mood-option" data-mood="adventurous" data-genre="12"> <!-- Adventure -->
+            <i class="fas fa-mountain"></i>
+            <span>Adventurous</span>
+            <div class="checkmark"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="mood-option" data-mood="romantic" data-genre="10749"> <!-- Romance -->
+            <i class="fas fa-heart"></i>
+            <span>Romantic</span>
+            <div class="checkmark"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="mood-option" data-mood="thoughtful" data-genre="18"> <!-- Drama -->
+            <i class="fas fa-brain"></i>
+            <span>Thoughtful</span>
+            <div class="checkmark"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="mood-option" data-mood="nostalgic" data-genre="10402"> <!-- Classic -->
+            <i class="fas fa-history"></i>
+            <span>Nostalgic</span>
+            <div class="checkmark"><i class="fas fa-check"></i></div>
+        </div>
+    </div>
+</section>
 
         <!-- Main Controls -->
         <section class="controls animate__animated animate__fadeIn animate__delay-3s">
@@ -100,10 +105,12 @@
                 <div class="sort-options">
                     <span>Sort by:</span>
                     <select id="sort-by">
-                        <option value="popularity">Popularity</option>
-                        <option value="rating">Rating</option>
-                        <option value="newest">Newest</option>
-                        <option value="oldest">Oldest</option>
+                        <option value="popularity.desc">Popularity (High to Low)</option>
+                        <option value="popularity.asc">Popularity (Low to High)</option>
+                        <option value="vote_average.desc">Rating (High to Low)</option>
+                        <option value="vote_average.asc">Rating (Low to High)</option>
+                        <option value="release_date.desc">Newest First</option>
+                        <option value="release_date.asc">Oldest First</option>
                     </select>
                 </div>
             </div>
